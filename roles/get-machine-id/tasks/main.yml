@@ -29,7 +29,7 @@
   debug:
     msg: "{{ machine_id_results }}"
 
-- name: make machine-id.txt
+- name: make machine-id-{{ fetch_timestamp }}.txt
   delegate_to: localhost
   template:
     src: machine-id.txt.j2
