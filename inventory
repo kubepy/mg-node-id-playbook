@@ -1,6 +1,6 @@
 [all:vars]
 ansible_user=core
-#ansible_sudo_exe=yes
+#ansible_password=password
 
 [all]
 192.168.50.10
