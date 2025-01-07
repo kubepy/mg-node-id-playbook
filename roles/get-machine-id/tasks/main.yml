@@ -1,0 +1,26 @@
+---
+# tasks file for get-machine-id
+- name: Gather facts
+  setup:
+    gather_subset:
+      - 'default_ipv4'
+      - 'machine_id'
+    filter:
+      - 'ansible_default_ipv4'
+      - 'ansible_fqdn'
+      - 'ansible_machine_id'
+  register: machine_id_results_temp
+
+- name: Save as machine_id_results variable from machine_id_results_temp
+  set_fact: machine_id_results={{ machine_id_results_temp["ansible_facts"] }}
+
+- name: Print facts
+  debug:
+    msg: "{{ machine_id_results }}"
+
+- name: make machine-id.txt
+  delegate_to: localhost
+  template:
+    src: machine-id.txt.j2
+    dest: machine-id.txt
+
